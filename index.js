@@ -451,6 +451,101 @@ const get = require('got')
             );
 
          });
+	   }
+ if (text.includes("!yt"))
+   {
+      const url = text.replace(/!yt/, "");
+      const exec = require('child_process').exec;
+
+      var videoid = url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
+
+      const ytdl = require("ytdl-core")
+      if (videoid != null)
+      {
+         console.log("video id = ", videoid[1]);
+      }
+      else
+      {
+         conn.sendMessage(id, "gavalid", MessageType.text)
+      }
+      ytdl.getInfo(videoid[1]).then(info =>
+      {
+         if (info.length_seconds > 1000)
+         {
+            conn.sendMessage(id, " videonya kepanjangan", MessageType.text)
+         }
+         else
+         {
+
+            console.log(info.length_seconds)
+
+            function os_func()
+            {
+               this.execCommand = function (cmd)
+               {
+                  return new Promise((resolve, reject) =>
+                  {
+                     exec(cmd, (error, stdout, stderr) =>
+                     {
+                        if (error)
+                        {
+                           reject(error);
+                           return;
+                        }
+                        resolve(stdout)
+                     });
+                  })
+               }
+            }
+            var os = new os_func();
+
+            os.execCommand('ytdl ' + url + ' -q highest -o mp4/' + videoid[1] + '.mp4').then(res =>
+            {
+		const buffer = fs.readFileSync("mp4/"+ videoid[1] +".mp4")
+               conn.sendMessage(id, buffer, MessageType.video)
+            }).catch(err =>
+            {
+               console.log("os >>>", err);
+            })
+
+         }
+      });
+   }
+	if (text.includes("!nulis"))
+   {
+
+      const
+      {
+         spawn
+      } = require("child_process");
+      console.log("writing...")
+      const teks = text.replace(/!nulis/, "")
+      const split = teks.replace(/(\S+\s*){1,10}/g, "$&\n")
+      const fixedHeight = split.split("\n").slice(0, 25).join("\\n")
+      console.log(split)
+      spawn("convert", [
+            "./assets/paper.jpg",
+            "-font",
+            "Indie-Flower",
+            "-size",
+            "700x960",
+            "-pointsize",
+            "18",
+            "-interline-spacing",
+            "3",
+            "-annotate",
+            "+170+222",
+            fixedHeight,
+            "./assets/result.jpg"
+         ])
+         .on("error", () => console.log("error"))
+         .on("exit", () =>
+         {
+            const buffer = fs.readFileSync("assets/result.jpg") // can send mp3, mp4, & ogg -- but for mp3 files the mimetype must be set to ogg
+
+            conn.sendMessage(id, buffer, MessageType.image)
+            console.log("done")
+         });
   }
    if (text.includes("!pict cewek"))
    {
@@ -543,7 +638,7 @@ if (text.includes("!animepict"))
   var path = require('path');
   var text1 = teks.slice(6);
   text1 = suara;
-  var suara = text.replace(/#ttsid/g, text1);
+  var suara = text.replace(/!ttsid/g, text1);
   var filepath = 'mp3/bacot.wav';
   
   
