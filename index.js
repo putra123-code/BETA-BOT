@@ -103,7 +103,7 @@ if (text == 'halo')
 {
 conn.sendMessage(id, tambahan.halo ,MessageType.text);
 }
-else if (text == 'intro')
+else if (text == 'Intro')
 {
 conn.sendMessage(id, tambahan.intro ,MessageType.text);
 }
