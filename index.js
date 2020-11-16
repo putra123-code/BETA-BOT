@@ -181,7 +181,7 @@ const gg = idn
 
 const exists = await conn.isOnWhatsApp (gg)
 console.log(exists);
-conn.sendMessage(id ,`nomor hp ${gg} ${exists ? " tersedia " : " tidak tersedia"} di whatsapp`, MessageType.text)
+conn.sendMessage(id ,`Nomor HPmu Adalah: ${id.split("@s.whatsapp.net")[0]}`, MessageType.text)
 }
 
 if (text.includes("!say")){
