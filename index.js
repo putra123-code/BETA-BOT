@@ -192,7 +192,7 @@ conn.sendMessage(id, teks, MessageType.text)
 if (text.includes("!nulis")){
   const teks = text.replace(/!nulis /, "")
 axios.get(`https://mhankbarbar.herokuapp.com/nulis?text=${teks}&apiKey=zFuV88pxcIiCWuYlwg57`).then((res) => {
-    let hasil = `Silahkan download hasil dibawah ini agar hasilnya lebih bagus! 👌\n\n${res.data.result}`;
+    let hasil = `${res.data.result}`;
     conn.sendMessage(id, hasil ,MessageType.text);           
 })
 }
@@ -200,7 +200,7 @@ axios.get(`https://mhankbarbar.herokuapp.com/nulis?text=${teks}&apiKey=zFuV88pxc
 if (text.includes("!ytmp3")){
 const teks = text.replace(/!ytmp3 /, "")
 axios.get(`https://st4rz.herokuapp.com/api/yta?url=${teks}`).then((res) => {
-    let hasil = `Audio telah tersedia pada link di bawah, silahkan klik link dan download hasilnya\n👇👇👇👇👇👇👇👇👇\n\nJudul: ${res.data.title}\n\nUkuran audio: ${res.data.filesize}\n\nLink: ${res.data.result}`;
+    let hasil = `${res.data.title}\n\n${res.data.filesize}\n\n${res.data.result}`;
     conn.sendMessage(id, hasil ,MessageType.text);
 })
 }
@@ -208,7 +208,7 @@ axios.get(`https://st4rz.herokuapp.com/api/yta?url=${teks}`).then((res) => {
 if (text.includes("!yt")){
 const teks = text.replace(/!yt /, "")
 axios.get(`https://st4rz.herokuapp.com/api/ytv?url=${teks}`).then((res) => {
-    let hasil = `Video telah tersedia pada link di bawah, silahkan klik link dan download hasilnya\n👇👇👇👇👇👇👇👇👇\n\nJudul: ${res.data.title}\n\nUkuran video: ${res.data.filesize}\n\nLink: ${res.data.result}`;
+    let hasil = `${res.data.title}\n\n${res.data.filesize}\n\n${res.data.result}`;
     conn.sendMessage(id, hasil ,MessageType.text);
 })
 }
@@ -216,7 +216,7 @@ axios.get(`https://st4rz.herokuapp.com/api/ytv?url=${teks}`).then((res) => {
 if (text.includes("!fb")){
 const teks = text.replace(/!fb /, "")
 axios.get(`https://mhankbarbar.herokuapp.com/api/epbe?url=${teks}&apiKey=zFuV88pxcIiCWuYlwg57`).then((res) => {
-    let hasil = `Berhasil! silahkan klik link di bawah untuk mendownload hasilnya!\n👇👇👇👇👇👇👇👇👇\n\nJudul: ${res.data.title}\n\nUkuran: ${res.data.filesize}\n\nLink: ${res.data.result}`;
+    let hasil = `${res.data.title}\n\n${res.data.filesize}\n\n${res.data.result}`;
     conn.sendMessage(id, hasil ,MessageType.text);
 })
 }
@@ -224,7 +224,7 @@ axios.get(`https://mhankbarbar.herokuapp.com/api/epbe?url=${teks}&apiKey=zFuV88p
 if (text.includes("!ig")){
 const teks = text.replace(/!ig /, "")
 axios.get(`https://st4rz.herokuapp.com/api/ig?url=${teks}`).then((res) => {
-    let hasil = `Berhasil! silahkan klik link di bawah untuk mendownload hasilnya!\n👇👇👇👇👇👇👇👇👇\n\nUkuran: ${res.data.filesize}\n\nLink: ${res.data.result}`;
+    let hasil = `${res.data.filesize}\n\n${res.data.result}`;
     conn.sendMessage(id, hasil ,MessageType.text);
 })
 }
@@ -232,22 +232,15 @@ axios.get(`https://st4rz.herokuapp.com/api/ig?url=${teks}`).then((res) => {
 if (text.includes("!twt")){
 const teks = text.replace(/!twt /, "")
 axios.get(`https://mhankbarbar.herokuapp.com/api/twit?url=${teks}&apiKey=zFuV88pxcIiCWuYlwg57`).then((res) => {
-    let hasil = `Berhasil! silahkan klik link di bawah untuk mendownload hasilnya!\n👇👇👇👇👇👇👇👇👇\n\nSize: ${res.data.filesize}\n\nLink: ${res.data.result}`;
+    let hasil = `${res.data.filesize}\n\n${res.data.result}`;
     conn.sendMessage(id, hasil ,MessageType.text);
 })
 }
 if (text.includes("!tiktok")) {
 const tictoc = text.replace(/!tiktok /, "")
 axios.get(`https://st4rz.herokuapp.com/api/tiktok?url=${tictoc}`).then((res) => {
-     let titoe = `Berhasil!!! Silahkan klik link dibawah ini untuk mendownload hasilnya! \n👇👇👇👇👇👇👇👇👇\n\nJudul: ${res.data.deskripsi} \n\nDurasi: ${res.data.durasi}\n\nNama: ${res.data.nama}\n\nUrl: ${res.data.urlvideo}`;
+     let titoe = `${res.data.deskripsi} \n\n${res.data.durasi}\n\n${res.data.nama}\n\n${res.data.urlvideo}`;
 conn.sendMessage(id, titoe, MessageType.text);
-})
-}
-if (text.includes("!wikia")){
-const teks = text.replace(/!wikia /, "")
-axios.get(`https://st4rz.herokuapp.com/api/wiki?q=${text}`).then((res) => {
-    let hasil = `Menurut Wikipedia:\n\n${res.data.result}`;
-    conn.sendMessage(id, hasil ,MessageType.text);
 })
 }
 if (text.includes("!sholat")){
@@ -667,7 +660,7 @@ const buffer = fs.readFileSync(filepath)
 if (text.includes("!lirik")){
 	const teks = text.split("!lirik")[1]
 	axios.get(`http://scrap.terhambar.com/lirik?word=${teks}`).then ((res) => {
-	 	let hasil = `LIRIK DARI LAGU ${teks} ADALAH\n\n\n ${res.data.result.lirik}`
+	 	let hasil = `*LIRIK LAGU* {${teks}}\n\n\n ${res.data.result.lirik}`
 	conn.sendMessage(id, hasil, MessageType.text)
 	})
 }
