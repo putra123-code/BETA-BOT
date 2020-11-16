@@ -639,7 +639,7 @@ if (text.includes("!animepict"))
   var text1 = teks.slice(6);
   text1 = suara;
   var suara = text.replace(/!ttsid/g, text1);
-  var filepath = 'mp3/bacot.wav';
+  var filepath = 'mp3/bacot.mp3';
   
   
 /*
