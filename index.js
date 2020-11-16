@@ -656,6 +656,117 @@ const buffer = fs.readFileSync(filepath)
 	conn.sendMessage(id , buffer , MessageType.audio);
 
 };
+	 }
+
+if (text.includes("!pokemon"))
+
+   {
+
+    var items = ["anime pokemon"];
+
+    var nime = items[Math.floor(Math.random() * items.length)];
+
+    var url = "https://api.fdci.se/rep.php?gambar=" + nime;
+
+    
+
+    axios.get(url)
+
+      .then((result) => {
+
+        var n = JSON.parse(JSON.stringify(result.data));
+
+        var nimek =  n[Math.floor(Math.random() * n.length)];
+
+        imageToBase64(nimek) 
+
+        .then(
+
+            (response) => {
+
+	var buf = Buffer.from(response, 'base64'); 
+
+              conn.sendMessage(
+
+            id,
+
+              buf,MessageType.image)
+
+       
+
+            }
+
+        )
+
+        .catch(
+
+            (error) => {
+
+                console.log(error);
+
+            }
+
+        )
+
+    
+
+    });
+
+    }
+
+if (text.includes("!loli"))
+
+   {
+
+    var items = ["anime loli"];
+
+    var nime = items[Math.floor(Math.random() * items.length)];
+
+    var url = "https://api.fdci.se/rep.php?gambar=" + nime;
+
+    
+
+    axios.get(url)
+
+      .then((result) => {
+
+        var n = JSON.parse(JSON.stringify(result.data));
+
+        var nimek =  n[Math.floor(Math.random() * n.length)];
+
+        imageToBase64(nimek) 
+
+        .then(
+
+            (response) => {
+
+	var buf = Buffer.from(response, 'base64'); 
+
+              conn.sendMessage(
+
+            id,
+
+              buf,MessageType.image)
+
+       
+
+            }
+
+        )
+
+        .catch(
+
+            (error) => {
+
+                console.log(error);
+
+            }
+
+        )
+
+    
+
+    });
 }
 if (text.includes("!lirik")){
 	const teks = text.split("!lirik")[1]
