@@ -12,7 +12,7 @@ const menu = require("./lib/menu.js");
 const tambahan = require("./lib/tambahan.js")
 const donasi = require("./lib/donasi.js");
 const info = require("./lib/info.js");
-const wellcome = require("./lib/wellcome.js");
+
 /////////////////
 const BotName = 'Putra_Prawangsa'; 
 const instagram = 'https://instagram.com/prawangsaputra'; 
