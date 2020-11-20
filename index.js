@@ -667,7 +667,7 @@ if (text.includes("!pokemon"))
 
     var nime = items[Math.floor(Math.random() * items.length)];
 
-    var url = "https://api.fdci.se/rep.php?gambar=" + nime;
+    var url = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/" + nime;
 
     
 
@@ -723,7 +723,7 @@ if (text.includes("!loli"))
 
     var nime = items[Math.floor(Math.random() * items.length)];
 
-    var url = "https://api.fdci.se/rep.php?gambar=" + nime;
+    var url = "https://mhankbarbar.herokuapp.com/api/randomloli" + nime;
 
     
 
