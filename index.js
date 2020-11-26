@@ -251,7 +251,8 @@ if (text.includes("$sholat")){
   let hasil = `Jadwal sholat di *[${teks} ]* hari ini adalah\n\n👉Imsyak : ${res.data.Imsyak}\n👉Subuh : ${res.data.Subuh} WIB\n👉Dzuhur : ${res.data.Dzuhur}WIB\n👉Ashar : ${res.data.Ashar} WIB\n👉Maghrib : ${res.data.Maghrib}\n👉Isya : ${res.data.Isya} WIB\n👉Tengah malam : ${res.data.Dhuha} WIB`;
   conn.sendMessage(id, hasil, MessageType.text);
 })
-	}}
+	
+}
 	
 if (text == '66536'){
 const corohelp = await get.get('https://covid19.mathdro.id/api/countries/id').json()
