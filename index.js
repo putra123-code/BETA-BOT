@@ -186,12 +186,12 @@ conn.sendMessage(id ,`Nomor HPmu Adalah: ${id.split("@s.whatsapp.net")[0]}`, Mes
 }
 
 if (text.includes("$say")){
-  const teks = text.replace(/$say /, "")
+  const teks = text.replace(/"$say"/, "")
 conn.sendMessage(id, teks, MessageType.text)
 	
 }
 if (text.includes("$nulis")){
-  const teks = text.replace(/$nulis /, "")
+  const teks = text.replace(/"$nulis"/, "")
 axios.get(`https://mhankbarbar.herokuapp.com/nulis?text=${teks}&apiKey=zFuV88pxcIiCWuYlwg57`).then((res) => {
     let hasil = `${res.data.result}`;
     conn.sendMessage(id, hasil ,MessageType.text);           
@@ -199,7 +199,7 @@ axios.get(`https://mhankbarbar.herokuapp.com/nulis?text=${teks}&apiKey=zFuV88pxc
 }
 
 if (text.includes("$ytmp3")){
-const teks = text.replace(/$ytmp3 /, "")
+const teks = text.replace(/"$ytmp3"/, "")
 axios.get(`https://st4rz.herokuapp.com/api/yta?url=${teks}`).then((res) => {
     let hasil = `${res.data.title}\n\n${res.data.filesize}\n\n${res.data.result}`;
     conn.sendMessage(id, hasil ,MessageType.text);
@@ -207,15 +207,15 @@ axios.get(`https://st4rz.herokuapp.com/api/yta?url=${teks}`).then((res) => {
 }
 
 if (text.includes("$yt")){
-const teks = text.replace(/$yt /, "")
+const teks = text.replace(/"$yt"/, "")
 axios.get(`https://st4rz.herokuapp.com/api/ytv?url=${teks}`).then((res) => {
     let hasil = `${res.data.title}\n\n${res.data.filesize}\n\n${res.data.result}`;
     conn.sendMessage(id, hasil ,MessageType.text);
 })
 }
 
-if (text.includes("f$b")){
-const teks = text.replace(/$fb /, "")
+if (text.includes("$fb")){
+const teks = text.replace(/"$fb"/, "")
 axios.get(`https://mhankbarbar.herokuapp.com/api/epbe?url=${teks}&apiKey=zFuV88pxcIiCWuYlwg57`).then((res) => {
     let hasil = `${res.data.title}\n\n${res.data.filesize}\n\n${res.data.result}`;
     conn.sendMessage(id, hasil ,MessageType.text);
@@ -223,7 +223,7 @@ axios.get(`https://mhankbarbar.herokuapp.com/api/epbe?url=${teks}&apiKey=zFuV88p
 }
 
 if (text.includes("$ig")){
-const teks = text.replace(/$ig /, "")
+const teks = text.replace(/"$ig"/, "")
 axios.get(`https://st4rz.herokuapp.com/api/ig?url=${teks}`).then((res) => {
     let hasil = `${res.data.filesize}\n\n${res.data.result}`;
     conn.sendMessage(id, hasil ,MessageType.text);
@@ -231,23 +231,23 @@ axios.get(`https://st4rz.herokuapp.com/api/ig?url=${teks}`).then((res) => {
 }
 
 if (text.includes("$twt")){
-const teks = text.replace(/$twt /, "")
+const teks = text.replace(/"$twt"/, "")
 axios.get(`https://mhankbarbar.herokuapp.com/api/twit?url=${teks}&apiKey=zFuV88pxcIiCWuYlwg57`).then((res) => {
     let hasil = `${res.data.filesize}\n\n${res.data.result}`;
     conn.sendMessage(id, hasil ,MessageType.text);
 })
 }
 if (text.includes("$tiktok")) {
-const tictoc = text.replace(/$tiktok /, "")
+const tictoc = text.replace(/"$tiktok"/, "")
 axios.get(`https://st4rz.herokuapp.com/api/tiktok?url=${tictoc}`).then((res) => {
      let titoe = `${res.data.deskripsi} \n\n${res.data.durasi}\n\n${res.data.nama}\n\n${res.data.urlvideo}`;
 conn.sendMessage(id, titoe, MessageType.text);
 })
 }
 if (text.includes("$sholat")){
-  const teks = text.replace(/$sholat /, "")
+  const teks = text.replace(/"$sholat"/, "")
   axios.get(`https://mhankbarbar.herokuapp.com/api/jadwalshalat?daerah=${teks}&apiKey=zFuV88pxcIiCWuYlwg57`).then ((res) =>{
-  let hasil = `Jadwal sholat di ${teks} hari ini adalah\n\n👉Imsyak : ${res.data.Imsyak}\n👉Subuh : ${res.data.Subuh} WIB\n👉Dzuhur : ${res.data.Dzuhur}WIB\n👉Ashar : ${res.data.Ashar} WIB\n👉Maghrib : ${res.data.Maghrib}\n👉Isya : ${res.data.Isya} WIB\n👉Tengah malam : ${res.data.Dhuha} WIB`;
+  let hasil = `Jadwal sholat di *[${teks} ]* hari ini adalah\n\n👉Imsyak : ${res.data.Imsyak}\n👉Subuh : ${res.data.Subuh} WIB\n👉Dzuhur : ${res.data.Dzuhur}WIB\n👉Ashar : ${res.data.Ashar} WIB\n👉Maghrib : ${res.data.Maghrib}\n👉Isya : ${res.data.Isya} WIB\n👉Tengah malam : ${res.data.Dhuha} WIB`;
   conn.sendMessage(id, hasil, MessageType.text);
 })
 }
@@ -373,13 +373,18 @@ var tampilWaktu = "JAM: " + jam + ":" + menit + ":" + detik;
 conn.sendMessage(id, info.info(id, BotName, corohelp, tampilTanggal, tampilWaktu, instagram, telegram, youtube, kapanbotaktif) ,MessageType.text);
 }
 else if (text == '$pict'){
-conn.sendMessage(id, 'ulangi dengan  p$ict cewek/cowok\n\nMisal: $pict cowok' ,MessageType.text);
+conn.sendMessage(id, 'ulangi dengan  $pict cewek/cowok\n\nMisal: $pict cowok' ,MessageType.text);
 }
    if (messageType == 'imageMessage')
    {
       let caption = imageMessage.caption.toLocaleLowerCase()
       const buffer = await conn.downloadMediaMessage(m) // to decrypt & use as a buffer
       if (caption == '$sticker')
+if (caption == '$stiker')
+if (caption == '!sticker')
+if (caption == '!stiker')
+if (caption == '#sticker')
+if (caption == '#stiker')
       {
          const stiker = await conn.downloadAndSaveMediaMessage(m) // to decrypt & save to file
 
@@ -424,7 +429,7 @@ const get = require('got')
     var meninggal = (body[0]['meninggal']);
     var dirawat = (body[0]['dirawat']);
     console.log(body[0]['name'])
-    conn.sendMessage(id,`😭🤒DATA WABAH COVID-19 TERBARU DI INDONESIA😔😊\n\n😔Positif ==> ${positif} \n😊Sembuh ==> ${sembuh} \n😭Meninggal ==> ${meninggal}\n🤒Dirawat ==> ${dirawat}`, MessageType.text);
+    conn.sendMessage(id,`DATA WABAH COVID-19 TERBARU DI INDONESIA\n\nPositif ==> *[${positif} ]* \nSembuh ==> *[${sembuh} ]*\nMeninggal ==> *[${meninggal} ]*\nDirawat ==> *[${dirawat} ]*`, MessageType.text);
 }
    if (text.includes("$quotes"))
    {
@@ -444,7 +449,7 @@ const get = require('got')
      _${kata}_
         
     
-	*~${author}*
+	*Putra_Prawangsa*
          `, MessageType.text
             );
 
@@ -632,11 +637,11 @@ if (text.includes("$animepict"))
     });
     }
  else if (text.includes("$ttsid")) {
-  var teks = text.split("$ttsid ")[1];
+  var teks = text.split("$ttsid")[1];
   var path = require('path');
   var text1 = teks.slice(6);
   text1 = suara;
-  var suara = text.replace(/$ttsid/g, text1);
+  var suara = text.replace(/"$ttsid"/g, text1);
   var filepath = 'mp3/bacot.wav';
   
   
@@ -653,7 +658,7 @@ await new Promise(resolve => setTimeout(resolve, 500));
   conn.sendMessage("Text kepanjangan bro!")
 }else{
 
-const buffer = fs.readFileSync(filepath)
+const buffer = fs.readFileSync (filepath)
 	conn.sendMessage(id , buffer , MessageType.audio);
 
 };
@@ -709,7 +714,7 @@ console.log(error);
 if (text.includes("$lirik")){
 	const teks = text.split("$lirik")[1]
 	axios.get(`http://scrap.terhambar.com/lirik?word=${teks}`).then ((res) => {
-	 	let hasil = `\n*[${teks}]*\n\n\n________________________________________________\n\n ${res.data.result.lirik}\n________________________________________________`
+	 	let hasil = `\n*[${teks}]*\n\n\n____________________________________\n ${res.data.result.lirik}\n\n____________________________________`
 	conn.sendMessage(id, hasil, MessageType.text)
 	})
 }
