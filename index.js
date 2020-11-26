@@ -12,7 +12,7 @@ const menu = require("./lib/menu.js");
 const tambahan = require("./lib/tambahan.js")
 const donasi = require("./lib/donasi.js");
 const info = require("./lib/info.js");
-const virtex = request("./lib/virtex.js");
+
 
 /////////////////
 const BotName = 'Putra_Prawangsa'; 
