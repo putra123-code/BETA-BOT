@@ -187,12 +187,12 @@ conn.sendMessage(id ,`Nomor HPmu Adalah: ${id.split("@s.whatsapp.net")[0]}`, Mes
 }
 
 if (text.includes("$say")){
-  const teks = text.replace(/"$say"/, "")
+  const teks = text.replace(/$say /, "")
 conn.sendMessage(id, teks, MessageType.text)
 	
 }
 if (text.includes("$nulis")){
-  const teks = text.replace(/"$nulis"/, "")
+  const teks = text.replace(/$nulis /, "")
 axios.get(`https://mhankbarbar.herokuapp.com/nulis?text=${teks}&apiKey=zFuV88pxcIiCWuYlwg57`).then((res) => {
     let hasil = `${res.data.result}`;
     conn.sendMessage(id, hasil ,MessageType.text);           
@@ -200,7 +200,7 @@ axios.get(`https://mhankbarbar.herokuapp.com/nulis?text=${teks}&apiKey=zFuV88pxc
 }
 
 if (text.includes("$ytmp3")){
-const teks = text.replace(/"$ytmp3"/, "")
+const teks = text.replace(/$ytmp3 /, "")
 axios.get(`https://st4rz.herokuapp.com/api/yta?url=${teks}`).then((res) => {
     let hasil = `${res.data.title}\n\n${res.data.filesize}\n\n${res.data.result}`;
     conn.sendMessage(id, hasil ,MessageType.text);
@@ -208,7 +208,7 @@ axios.get(`https://st4rz.herokuapp.com/api/yta?url=${teks}`).then((res) => {
 }
 
 if (text.includes("$yt")){
-const teks = text.replace(/"$yt"/, "")
+const teks = text.replace(/$yt /, "")
 axios.get(`https://st4rz.herokuapp.com/api/ytv?url=${teks}`).then((res) => {
     let hasil = `${res.data.title}\n\n${res.data.filesize}\n\n${res.data.result}`;
     conn.sendMessage(id, hasil ,MessageType.text);
@@ -216,7 +216,7 @@ axios.get(`https://st4rz.herokuapp.com/api/ytv?url=${teks}`).then((res) => {
 }
 
 if (text.includes("$fb")){
-const teks = text.replace(/"$fb"/, "")
+const teks = text.replace(/$fb /, "")
 axios.get(`https://mhankbarbar.herokuapp.com/api/epbe?url=${teks}&apiKey=zFuV88pxcIiCWuYlwg57`).then((res) => {
     let hasil = `${res.data.title}\n\n${res.data.filesize}\n\n${res.data.result}`;
     conn.sendMessage(id, hasil ,MessageType.text);
@@ -224,7 +224,7 @@ axios.get(`https://mhankbarbar.herokuapp.com/api/epbe?url=${teks}&apiKey=zFuV88p
 }
 
 if (text.includes("$ig")){
-const teks = text.replace(/"$ig"/, "")
+const teks = text.replace(/$ig /, "")
 axios.get(`https://st4rz.herokuapp.com/api/ig?url=${teks}`).then((res) => {
     let hasil = `${res.data.filesize}\n\n${res.data.result}`;
     conn.sendMessage(id, hasil ,MessageType.text);
@@ -232,26 +232,27 @@ axios.get(`https://st4rz.herokuapp.com/api/ig?url=${teks}`).then((res) => {
 }
 
 if (text.includes("$twt")){
-const teks = text.replace(/"$twt"/, "")
+const teks = text.replace(/$twt /, "")
 axios.get(`https://mhankbarbar.herokuapp.com/api/twit?url=${teks}&apiKey=zFuV88pxcIiCWuYlwg57`).then((res) => {
     let hasil = `${res.data.filesize}\n\n${res.data.result}`;
     conn.sendMessage(id, hasil ,MessageType.text);
 })
 }
 if (text.includes("$tiktok")) {
-const tictoc = text.replace(/"$tiktok"/, "")
+const tictoc = text.replace(/$tiktok /, "")
 axios.get(`https://st4rz.herokuapp.com/api/tiktok?url=${tictoc}`).then((res) => {
      let titoe = `${res.data.deskripsi} \n\n${res.data.durasi}\n\n${res.data.nama}\n\n${res.data.urlvideo}`;
 conn.sendMessage(id, titoe, MessageType.text);
 })
 }
 if (text.includes("$sholat")){
-  const teks = text.replace(/"$sholat"/, "")
+  const teks = text.replace(/$sholat /, "")
   axios.get(`https://mhankbarbar.herokuapp.com/api/jadwalshalat?daerah=${teks}&apiKey=zFuV88pxcIiCWuYlwg57`).then ((res) =>{
   let hasil = `Jadwal sholat di *[${teks} ]* hari ini adalah\n\n👉Imsyak : ${res.data.Imsyak}\n👉Subuh : ${res.data.Subuh} WIB\n👉Dzuhur : ${res.data.Dzuhur}WIB\n👉Ashar : ${res.data.Ashar} WIB\n👉Maghrib : ${res.data.Maghrib}\n👉Isya : ${res.data.Isya} WIB\n👉Tengah malam : ${res.data.Dhuha} WIB`;
   conn.sendMessage(id, hasil, MessageType.text);
 })
-	}
+	}}
+	
 if (text == '66536'){
 const corohelp = await get.get('https://covid19.mathdro.id/api/countries/id').json()
 var date = new Date();
