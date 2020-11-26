@@ -252,7 +252,7 @@ if (text.includes("$sholat")){
   conn.sendMessage(id, hasil, MessageType.text);
 })
 	
-}
+}}
 	
 if (text == '66536'){
 const corohelp = await get.get('https://covid19.mathdro.id/api/countries/id').json()
