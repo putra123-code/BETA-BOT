@@ -190,28 +190,64 @@ if (text.includes("$say")){
 conn.sendMessage(id, teks, MessageType.text)
 	
 }
-if (text.includes("$nulis")){
-  const teks = text.replace(/$nulis /, "")
-axios.get(`https://mhankbarbar.herokuapp.com/nulis?text=${teks}&apiKey=zFuV88pxcIiCWuYlwg57`).then((res) => {
-    let hasil = `${res.data.result}`;
-    conn.sendMessage(id, hasil ,MessageType.text);           
-})
+if (text.includes('$nulis')){
+  var teks = text.replace(/$nulis /, '')
+    axios.get('https://bangandre.herokuapp.com/nulis?teks='+teks)
+    .then((res) => {
+      imageToBase64(res.data.result)
+        .then(
+          (ress) => {
+            conn.sendMessage(id, 'Sedang diproses...', MessageType.text)
+            var buf = Buffer.from(ress, 'base64')
+            conn.sendMessage(id, buf, MessageType.image)
+        })
+    })
 }
 
 if (text.includes("$ytmp3")){
 const teks = text.replace(/$ytmp3 /, "")
-axios.get(`https://st4rz.herokuapp.com/api/yta?url=${teks}`).then((res) => {
+axios.get(`http://scrap.terhambar.com/yt?link=${teks}`).then((res) => {
     let hasil = `${res.data.title}\n\n${res.data.filesize}\n\n${res.data.result}`;
+    conn.sendMessage(id, hasil ,MessageType.text);
+})
+}
+if (text.includes("$infoig")){
+  const teks = text.replace(/$infoig /, "")
+  axios.get(`https://st4rz.herokuapp.com/api/stalk?username=${teks}`).then ((res) =>{
+  conn.sendMessage(id, 'Sedang diproses...', MessageType.text)
+  let hasil = `BIODATA INSTAGRAM ATAS NAMA _${teks}_ \n\n *Username✍️* : _${res.data.Username}_ \n *Nama✍️* : _${res.data.Name}_ \n *Jumlah Followers✍️* : _${res.data.Jumlah_Followers}_ \n *Jumlah_Following✍️* : _${res.data.Jumlah_Following}_ \n *Jumlah_Post✍️* : _${res.data.Jumlah_Post}_ `;
+  conn.sendMessage(id, hasil, MessageType.text);
+})
+}
+if (text.includes("$infogempa")){
+  const teks = text.replace(/$infogempa /, "")
+  axios.get(`https://st4rz.herokuapp.com/api/infogempa`).then ((res) =>{
+  conn.sendMessage(id, 'Sedang diproses...', MessageType.text)
+  let hasil = ` *INFO GEMPA* \n\ *Lokasi* : _${res.data.lokasi}_ \n *Kedalaman✍️* : _${res.data.kedalaman}_ \n *Koordinat✍️* : _${res.data.koordinat}_ \n *Magnitude✍️* : _${res.data.magnitude}_ \n *Waktu✍️* : _${res.data.waktu}_ `;
+  conn.sendMessage(id, hasil, MessageType.text);
+})
+}
+if (text.includes("$chord")){
+const teks = text.replace(/$chord /, "")
+axios.get(`https://st4rz.herokuapp.com/api/chord?q=${teks}`).then((res) => {
+	conn.sendMessage(id, 'Sedang diproses...', MessageType.text)
+    let hasil = `Cord Lagu ${teks}  \n\nCord: _${res.data.result}_ `;
     conn.sendMessage(id, hasil ,MessageType.text);
 })
 }
 
 if (text.includes("$yt")){
 const teks = text.replace(/$yt /, "")
-axios.get(`https://st4rz.herokuapp.com/api/ytv?url=${teks}`).then((res) => {
+axios.get(`http://scrap.terhambar.com/yt?link=${teks}`).then((res) => {
     let hasil = `${res.data.title}\n\n${res.data.filesize}\n\n${res.data.result}`;
     conn.sendMessage(id, hasil ,MessageType.text);
 })
+}
+
+if (text.includes("$tts")){
+const teks = text.replace(/$tts /, "")
+const gtts = (`https://rest.farzain.com/api/tts.php?id=${teks}&apikey=O8mUD3YrHIy9KM1fMRjamw8eg`)
+    conn.sendMessage(id, gtts ,MessageType.text);
 }
 
 if (text.includes("$fb")){
@@ -559,6 +595,7 @@ const get = require('got')
         imageToBase64(cewek) // Path to the image
         .then(
             (response) => {
+	conn.sendMessage(id, 'Sedang diproses...', MessageType.text)
 	var buf = Buffer.from(response, 'base64'); // Ta-da	
               conn.sendMessage(
             id,
@@ -588,6 +625,7 @@ const get = require('got')
         imageToBase64(cowok) 
         .then(
             (response) => {
+	conn.sendMessage(id, 'Sedang diproses...', MessageType.text)
   var buf = Buffer.from(response, 'base64'); 
               conn.sendMessage(
             id,
@@ -617,6 +655,7 @@ if (text.includes("$animepict"))
         imageToBase64(nimek) 
         .then(
             (response) => {
+	conn.sendMessage(id, 'Sedang diproses...', MessageType.text)
 	var buf = Buffer.from(response, 'base64'); 
               conn.sendMessage(
             id,
@@ -671,6 +710,7 @@ var nimek =  n[Math.floor(Math.random() * n.length)];
 imageToBase64(nimek) 
 .then(
 (response) => {
+conn.sendMessage(id, 'Sedang diproses...', MessageType.text)
 var buf = Buffer.from(response, 'base64'); 
 conn.sendMessage(
 id,
@@ -696,6 +736,7 @@ var nimek =  n[Math.floor(Math.random() * n.length)];
 imageToBase64(nimek) 
 .then(
  (response) => {
+conn.sendMessage(id, 'Sedang diproses...', MessageType.text)
 var buf = Buffer.from(response, 'base64'); 
  conn.sendMessage(
 id,
