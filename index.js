@@ -287,6 +287,69 @@ if (text.includes("$sholat")){
   conn.sendMessage(id, hasil, MessageType.text);
 })
 }
+
+if (text.includes("$wiki")){
+const teks = text.replace(/$wiki /, "")
+axios.get(`https://alfians-api.herokuapp.com/api/wiki?q=${teks}`).then((res) => {
+	conn.sendMessage(id, 'Sedang diproses...', MessageType.text)
+    let hasil = `ðŸ“Menurut Wikipedia:\n\n${res.data.result}`;
+    conn.sendMessage(id, hasil ,MessageType.text);
+})
+}
+
+   else if (text.includes("$nama")) {
+    const cheerio = require('cheerio');
+    const request = require('request');
+    var nama = text.split("$nama ")[1];
+    var req = nama.replace(/ /g,"+");
+    request.get({
+        headers: {'content-type' : 'application/x-www-form-urlencoded'},
+        url:     'http://www.primbon.com/arti_nama.php?nama1='+ req +'&proses=+Submit%21+',
+      },function(error, response, body){
+          let $ = cheerio.load(body);
+          var y = $.html().split('arti:')[1];
+          var t = y.split('method="get">')[1];
+          var f = y.replace(t ," ");
+          var x = f.replace(/<br\s*[\/]?>/gi, "\n");
+          var h  = x.replace(/<[^>]*>?/gm, '');
+      console.log(""+ h);
+      conn.sendMessage(id,
+            `
+      Arti dari namamu adalah
+____________________________________
+         Nama _*${nama}*_ ${h}
+____________________________________
+
+`,
+ MessageType.text);
+  });
+}
+  else if (text.includes("$pasangan")) {
+    const request = require('request');
+    var gh = text.split("$pasangan ")[1];
+    var namamu = gh.split("&")[0];
+    var pasangan = gh.split("&")[1];
+    request.get({
+        headers: {'content-type' : 'application/x-www-form-urlencoded'},
+        url:     'http://www.primbon.com/kecocokan_nama_pasangan.php?nama1='+ namamu +'&nama2='+ pasangan +'&proses=+Submit%21+',
+
+    },function(error, response, body){
+        let $ = cheerio.load(body);
+      var y = $.html().split('<b>KECOCOKAN JODOH BERDASARKAN NAMA PASANGAN</b><br><br>')[1];
+        var t = y.split('.<br><br>')[1];
+        var f = y.replace(t ," ");
+        var x = f.replace(/<br\s*[\/]?>/gi, "\n");
+        var h  = x.replace(/<[^>]*>?/gm, '');
+        var d = h.replace("&amp;", '&')
+      console.log(""+ d);
+      conn.sendMessage(id, `
+____________________________________
+ *Kecocokan berdasarkan nama*
+ ${d}
+____________________________________
+    `, MessageType.text);
+  }); 
+}
 if (text == '$menu'){
 const corohelp = await get.get('https://covid19.mathdro.id/api/countries/id').json()
 var date = new Date();
