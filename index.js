@@ -323,7 +323,7 @@ axios.get(`https://alfians-api.herokuapp.com/api/wiki?q=${teks}`).then((res) => 
 	   conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
     const cheerio = require('cheerio');
     const request = require('request');
-    var nama = text.split(".nama ")[1];
+    var nama = text.split("$nama ")[1];
     var req = nama.replace(/ /g,"+");
     request.get({
         headers: {'content-type' : 'application/x-www-form-urlencoded'},
@@ -350,7 +350,7 @@ ____________________________________
   else if (text.includes("$pasangan")) {
 	 conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
     const request = require('request');
-    var gh = text.split(".pasangan ")[1];
+    var gh = text.split("$pasangan ")[1];
     var namamu = gh.split("&")[0];
     var pasangan = gh.split("&")[1];
     request.get({
