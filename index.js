@@ -15,7 +15,7 @@ const info = require("./lib/info.js");
 
 /////////////////
 const BotName = 'Putra_Prawangsa'; 
-const instagram = 'https://instagram.com/prawangsaputra'; 
+const instagram = 'KOSONG'; 
 const telegram = 'Tidak Punya'; 
 const kapanbotaktif = '24 JAM OFFLINE ~SIBUK  !!!~'; 
 const youtube = 'Tidak Punya';
@@ -174,7 +174,7 @@ else if (text == 'TEST')
 }
 // Fitur
 if(text.includes("$cek")){
-var num = text.replace(/$cek/ , "")
+var num = text.replace(/.cek/ , "")
 var idn = num.replace("0","+62");
 
 console.log(id);
@@ -186,121 +186,147 @@ conn.sendMessage(id ,`Nomor HPmu Adalah: ${id.split("@s.whatsapp.net")[0]}`, Mes
 }
 
 if (text.includes("$say")){
-  const teks = text.replace(/$say /, "")
+  const teks = text.replace(/.say /, "")
 conn.sendMessage(id, teks, MessageType.text)
 	
 }
 if (text.includes('$nulis')){
 	conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
-  var teks = text.replace(/$nulis /, '')
+  var teks = text.replace(/.nulis /, '')
     axios.get('https://bangandre.herokuapp.com/nulis?teks='+teks)
     .then((res) => {
       imageToBase64(res.data.result)
         .then(
           (ress) => {
             var buf = Buffer.from(ress, 'base64')
-            conn.sendMessage(id, '*SUKSES*', buf, MessageType.image)
+            conn.sendMessage(id, buf, MessageType.image)
+		  conn.sendMessage(id, '*SUKSES*', MessageType.text)
         })
     })
 }
 
 if (text.includes("$ytmp3")){
-const teks = text.replace(/$ytmp3 /, "")
+	conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
+const teks = text.replace(/.ytmp3 /, "")
 axios.get(`http://scrap.terhambar.com/yt?link=${teks}`).then((res) => {
     let hasil = `${res.data.title}\n\n${res.data.filesize}\n\n${res.data.result}`;
     conn.sendMessage(id, hasil ,MessageType.text);
+	conn.sendMessage(id, '*SUKSES*', MessageType.text)
 })
 }
 if (text.includes("$infoig")){
-  const teks = text.replace(/$infoig /, "")
+	conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
+  const teks = text.replace(/.infoig /, "")
   axios.get(`https://st4rz.herokuapp.com/api/stalk?username=${teks}`).then ((res) =>{
   conn.sendMessage(id, 'Sedang diproses...', MessageType.text)
-  let hasil = `BIODATA INSTAGRAM ATAS NAMA _${teks}_ \n\n *Username✍️* : _${res.data.Username}_ \n *Nama✍️* : _${res.data.Name}_ \n *Jumlah Followers✍️* : _${res.data.Jumlah_Followers}_ \n *Jumlah_Following✍️* : _${res.data.Jumlah_Following}_ \n *Jumlah_Post✍️* : _${res.data.Jumlah_Post}_ `;
+  let hasil = `BIODATA INSTAGRAM ATAS NAMA _${teks}_ \n\n *Username* : _${res.data.Username}_ \n *Nama* : _${res.data.Name}_ \n *Jumlah Followers* : _${res.data.Jumlah_Followers}_ \n *Jumlah_Following* : _${res.data.Jumlah_Following}_ \n *Jumlah_Post* : _${res.data.Jumlah_Post}_ `;
   conn.sendMessage(id, hasil, MessageType.text);
+	  conn.sendMessage(id, '*SUKSES*', MessageType.text)
 })
 }
 if (text.includes("$infogempa")){
-  const teks = text.replace(/$infogempa /, "")
+	conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
+  const teks = text.replace(/.infogempa /, "")
   axios.get(`https://st4rz.herokuapp.com/api/infogempa`).then ((res) =>{
   conn.sendMessage(id, 'Sedang diproses...', MessageType.text)
-  let hasil = ` *INFO GEMPA* \n\ *Lokasi* : _${res.data.lokasi}_ \n *Kedalaman✍️* : _${res.data.kedalaman}_ \n *Koordinat✍️* : _${res.data.koordinat}_ \n *Magnitude✍️* : _${res.data.magnitude}_ \n *Waktu✍️* : _${res.data.waktu}_ `;
+  let hasil = ` *INFO GEMPA* \n\ *Lokasi* : _${res.data.lokasi}_ \n *Kedalaman* : _${res.data.kedalaman}_ \n *Koordinat* : _${res.data.koordinat}_ \n *Magnitude* : _${res.data.magnitude}_ \n *Waktu* : _${res.data.waktu}_ `;
   conn.sendMessage(id, hasil, MessageType.text);
+	  conn.sendMessage(id, '*SUKSES*', MessageType.text)
 })
 }
 if (text.includes("$chord")){
-const teks = text.replace(/$chord /, "")
+	conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
+const teks = text.replace(/.chord /, "")
 axios.get(`https://st4rz.herokuapp.com/api/chord?q=${teks}`).then((res) => {
 	conn.sendMessage(id, 'Sedang diproses...', MessageType.text)
     let hasil = `Cord Lagu ${teks}  \n\nCord: _${res.data.result}_ `;
     conn.sendMessage(id, hasil ,MessageType.text);
+	conn.sendMessage(id, '*SUKSES*', MessageType.text)
 })
 }
 
 if (text.includes("$yt")){
-const teks = text.replace(/$yt /, "")
+	conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
+const teks = text.replace(/.yt /, "")
 axios.get(`http://scrap.terhambar.com/yt?link=${teks}`).then((res) => {
     let hasil = `${res.data.title}\n\n${res.data.filesize}\n\n${res.data.result}`;
     conn.sendMessage(id, hasil ,MessageType.text);
+	conn.sendMessage(id, '*SUKSES*', MessageType.text)
 })
 }
 
 if (text.includes("$tts")){
-const teks = text.replace(/$tts /, "")
+	conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
+const teks = text.replace(/.tts /, "")
 const gtts = (`https://rest.farzain.com/api/tts.php?id=${teks}&apikey=O8mUD3YrHIy9KM1fMRjamw8eg`)
     conn.sendMessage(id, gtts ,MessageType.text);
+	conn.sendMessage(id, '*SUKSES*', MessageType.text)
 }
 
 if (text.includes("$fb")){
-const teks = text.replace(/$fb /, "")
+	conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
+const teks = text.replace(/.fb /, "")
 axios.get(`https://mhankbarbar.herokuapp.com/api/epbe?url=${teks}&apiKey=zFuV88pxcIiCWuYlwg57`).then((res) => {
     let hasil = `${res.data.title}\n\n${res.data.filesize}\n\n${res.data.result}`;
     conn.sendMessage(id, hasil ,MessageType.text);
+	conn.sendMessage(id, '*SUKSES*', MessageType.text)
 })
 }
 
 if (text.includes("$ig")){
-const teks = text.replace(/$ig /, "")
+	conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
+const teks = text.replace(/.ig /, "")
 axios.get(`https://st4rz.herokuapp.com/api/ig?url=${teks}`).then((res) => {
     let hasil = `${res.data.filesize}\n\n${res.data.result}`;
     conn.sendMessage(id, hasil ,MessageType.text);
+	conn.sendMessage(id, '*SUKSES*', MessageType.text)
 })
 }
 
 if (text.includes("$twt")){
-const teks = text.replace(/$twt /, "")
+	conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
+const teks = text.replace(/.twt /, "")
 axios.get(`https://mhankbarbar.herokuapp.com/api/twit?url=${teks}&apiKey=zFuV88pxcIiCWuYlwg57`).then((res) => {
     let hasil = `${res.data.filesize}\n\n${res.data.result}`;
     conn.sendMessage(id, hasil ,MessageType.text);
+	conn.sendMessage(id, '*SUKSES*', MessageType.text)
 })
 }
 if (text.includes("$tiktok")) {
-const tictoc = text.replace(/$tiktok /, "")
+	conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
+const tictoc = text.replace(/.tiktok /, "")
 axios.get(`https://st4rz.herokuapp.com/api/tiktok?url=${tictoc}`).then((res) => {
      let titoe = `${res.data.deskripsi} \n\n${res.data.durasi}\n\n${res.data.nama}\n\n${res.data.urlvideo}`;
 conn.sendMessage(id, titoe, MessageType.text);
+	conn.sendMessage(id, '*SUKSES*', MessageType.text)
 })
 }
 if (text.includes("$sholat")){
-  const teks = text.replace(/$sholat /, "")
+	conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
+  const teks = text.replace(/.sholat /, "")
   axios.get(`https://mhankbarbar.herokuapp.com/api/jadwalshalat?daerah=${teks}&apiKey=zFuV88pxcIiCWuYlwg57`).then ((res) =>{
   let hasil = `Jadwal sholat di *[${teks} ]* hari ini adalah\n\n👉Imsyak : ${res.data.Imsyak}\n👉Subuh : ${res.data.Subuh} WIB\n👉Dzuhur : ${res.data.Dzuhur}WIB\n👉Ashar : ${res.data.Ashar} WIB\n👉Maghrib : ${res.data.Maghrib}\n👉Isya : ${res.data.Isya} WIB\n👉Tengah malam : ${res.data.Dhuha} WIB`;
   conn.sendMessage(id, hasil, MessageType.text);
+	  conn.sendMessage(id, '*SUKSES*', MessageType.text)
 })
 }
 
 if (text.includes("$wiki")){
-const teks = text.replace(/$wiki /, "")
+	conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
+const teks = text.replace(/.wiki /, "")
 axios.get(`https://alfians-api.herokuapp.com/api/wiki?q=${teks}`).then((res) => {
 	conn.sendMessage(id, 'Sedang diproses...', MessageType.text)
-    let hasil = `ðŸ“Menurut Wikipedia:\n\n${res.data.result}`;
+    let hasil = `Menurut Wikipedia:\n\n${res.data.result}`;
     conn.sendMessage(id, hasil ,MessageType.text);
+	conn.sendMessage(id, '*SUKSES*', MessageType.text)
 })
 }
 
    else if (text.includes("$nama")) {
+	   conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
     const cheerio = require('cheerio');
     const request = require('request');
-    var nama = text.split("$nama ")[1];
+    var nama = text.split(".nama ")[1];
     var req = nama.replace(/ /g,"+");
     request.get({
         headers: {'content-type' : 'application/x-www-form-urlencoded'},
@@ -319,14 +345,15 @@ axios.get(`https://alfians-api.herokuapp.com/api/wiki?q=${teks}`).then((res) => 
 ____________________________________
          Nama _*${nama}*_ ${h}
 ____________________________________
-
 `,
  MessageType.text);
+	    conn.sendMessage(id, '*SUKSES*', MessageType.text)
   });
 }
   else if (text.includes("$pasangan")) {
+	 conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
     const request = require('request');
-    var gh = text.split("$pasangan ")[1];
+    var gh = text.split(".pasangan ")[1];
     var namamu = gh.split("&")[0];
     var pasangan = gh.split("&")[1];
     request.get({
@@ -348,6 +375,7 @@ ____________________________________
  ${d}
 ____________________________________
     `, MessageType.text);
+	    conn.sendMessage(id, '*SUKSES*', MessageType.text)
   }); 
 }
 if (text == '$menu'){
@@ -388,12 +416,14 @@ var tampilWaktu = "JAM: " + jam + ":" + menit + ":" + detik;
 conn.sendMessage(id, menu.menu(id, BotName, corohelp, tampilTanggal, tampilWaktu, instagram, telegram, youtube, kapanbotaktif) ,MessageType.text);
 }
 else if (text == '$quran'){
+	conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
 axios.get('https://api.banghasan.com/quran/format/json/acak').then((res) => {
     const sr = /{(.*?)}/gi;
     const hs = res.data.acak.id.ayat;
     const ket = `${hs}`.replace(sr, '');
     let hasil = `[${ket}]   ${res.data.acak.ar.teks}\n\n${res.data.acak.id.teks}(QS.${res.data.surat.nama}, Ayat ${ket})`;
     conn.sendMessage(id, hasil ,MessageType.text);
+	conn.sendMessage(id, '*SUKSES*', MessageType.text)
 })
 	
 }
@@ -477,6 +507,7 @@ conn.sendMessage(id, 'ulangi dengan  $pict cewek/cowok\n\nMisal: $pict cowok' ,M
 }
    if (messageType == 'imageMessage')
    {
+	   conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
       let caption = imageMessage.caption.toLocaleLowerCase()
       const buffer = await conn.downloadMediaMessage(m) // to decrypt & use as a buffer
       if (caption == '$sticker')
@@ -491,6 +522,7 @@ conn.sendMessage(id, 'ulangi dengan  $pict cewek/cowok\n\nMisal: $pict cowok' ,M
          {
             let stik = fs.readFileSync('temp/' + jam + '.webp')
             conn.sendMessage(id, stik, MessageType.sticker)
+		 conn.sendMessage(id, '*SUKSES*', MessageType.text)
          });
       }
    }
@@ -500,7 +532,7 @@ conn.sendMessage(id, 'ulangi dengan  $pict cewek/cowok\n\nMisal: $pict cowok' ,M
 
       if (is == '$pantun')
       {
-
+conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
          fetch('https://raw.githubusercontent.com/pajaar/grabbed-results/master/pajaar-2020-pantun-pakboy.txt')
             .then(res => res.text())
             .then(body =>
@@ -509,12 +541,14 @@ conn.sendMessage(id, 'ulangi dengan  $pict cewek/cowok\n\nMisal: $pict cowok' ,M
                let pjr = tod[Math.floor(Math.random() * tod.length)];
                let pantun = pjr.replace(/pjrx-line/g, "\n");
                conn.sendMessage(id, pantun, MessageType.text)
+		 conn.sendMessage(id, '*SUKSES*', MessageType.text)
             });
       }
 
    };
       if (text.includes("$covid"))
    {
+	   conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
 const get = require('got')
     const body = await get.post('https://api.kawalcorona.com/indonesia', {
 
@@ -525,9 +559,11 @@ const get = require('got')
     var dirawat = (body[0]['dirawat']);
     console.log(body[0]['name'])
     conn.sendMessage(id,`DATA WABAH COVID-19 TERBARU DI INDONESIA\n\nPositif ==> *[${positif} ]* \nSembuh ==> *[${sembuh} ]*\nMeninggal ==> *[${meninggal} ]*\nDirawat ==> *[${dirawat} ]*`, MessageType.text);
-}
+conn.sendMessage(id, '*SUKSES*', MessageType.text)
+   }
    if (text.includes("$quotes"))
    {
+	   conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
       var url = 'https://jagokata.com/kata-bijak/acak.html'
       axios.get(url)
          .then((result) =>
@@ -539,114 +575,20 @@ const get = require('got')
             conn.sendMessage(
                id,
                `
-      Quotes untuk 
-*${id.split("@s.whatsapp.net")[0]}*
+     
      _${kata}_
         
     
 	*Putra_Prawangsa*
          `, MessageType.text
+		    conn.sendMessage(id, '*SUKSES*', MessageType.text)
             );
 
          });
-	   }
- if (text.includes("!yt"))
-   {
-      const url = text.replace(/!yt/, "");
-      const exec = require('child_process').exec;
-
-      var videoid = url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
-
-      const ytdl = require("ytdl-core")
-      if (videoid != null)
-      {
-         console.log("video id = ", videoid[1]);
-      }
-      else
-      {
-         conn.sendMessage(id, "gavalid", MessageType.text)
-      }
-      ytdl.getInfo(videoid[1]).then(info =>
-      {
-         if (info.length_seconds > 1000)
-         {
-            conn.sendMessage(id, " videonya kepanjangan", MessageType.text)
-         }
-         else
-         {
-
-            console.log(info.length_seconds)
-
-            function os_func()
-            {
-               this.execCommand = function (cmd)
-               {
-                  return new Promise((resolve, reject) =>
-                  {
-                     exec(cmd, (error, stdout, stderr) =>
-                     {
-                        if (error)
-                        {
-                           reject(error);
-                           return;
-                        }
-                        resolve(stdout)
-                     });
-                  })
-               }
-            }
-            var os = new os_func();
-
-            os.execCommand('ytdl ' + url + ' -q highest -o mp4/' + videoid[1] + '.mp4').then(res =>
-            {
-		const buffer = fs.readFileSync("mp4/"+ videoid[1] +".mp4")
-               conn.sendMessage(id, buffer, MessageType.video)
-            }).catch(err =>
-            {
-               console.log("os >>>", err);
-            })
-
-         }
-      });
    }
-	if (text.includes("!nulis"))
-   {
-
-      const
-      {
-         spawn
-      } = require("child_process");
-      console.log("writing...")
-      const teks = text.replace(/!nulis/, "")
-      const split = teks.replace(/(\S+\s*){1,10}/g, "$&\n")
-      const fixedHeight = split.split("\n").slice(0, 25).join("\\n")
-      console.log(split)
-      spawn("convert", [
-            "./assets/paper.jpg",
-            "-font",
-            "Indie-Flower",
-            "-size",
-            "700x960",
-            "-pointsize",
-            "18",
-            "-interline-spacing",
-            "3",
-            "-annotate",
-            "+170+222",
-            fixedHeight,
-            "./assets/result.jpg"
-         ])
-         .on("error", () => console.log("error"))
-         .on("exit", () =>
-         {
-            const buffer = fs.readFileSync("assets/result.jpg") // can send mp3, mp4, & ogg -- but for mp3 files the mimetype must be set to ogg
-
-            conn.sendMessage(id, buffer, MessageType.image)
-            console.log("done")
-         });
-  }
    if (text.includes("$pict cewek"))
    {
+	   conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
     var items = ["ullzang girl", "cewe cantik", "hijab cantik", "korean girl", "remaja cantik", "cewek korea", "cewek jepang"];
     var cewe = items[Math.floor(Math.random() * items.length)];
     var url = "https://api.fdci.se/rep.php?gambar=" + cewe;
@@ -658,12 +600,11 @@ const get = require('got')
         imageToBase64(cewek) // Path to the image
         .then(
             (response) => {
-	conn.sendMessage(id, 'Sedang diproses...', MessageType.text)
 	var buf = Buffer.from(response, 'base64'); // Ta-da	
               conn.sendMessage(
             id,
               buf,MessageType.image)
-       
+       conn.sendMessage(id, '*SUKSES*', MessageType.text)
             }
         )
         .catch(
@@ -677,6 +618,7 @@ const get = require('got')
 
    if (text.includes("$pict cowok"))
    {
+	   conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
     var items = ["cowo ganteng", "cogan", "korean boy", "chinese boy", "japan boy", "cowok indo ganteng", "cowok korea"];
     var cowo = items[Math.floor(Math.random() * items.length)];
     var url = "https://api.fdci.se/rep.php?gambar=" + cowo;
@@ -688,12 +630,11 @@ const get = require('got')
         imageToBase64(cowok) 
         .then(
             (response) => {
-	conn.sendMessage(id, 'Sedang diproses...', MessageType.text)
   var buf = Buffer.from(response, 'base64'); 
               conn.sendMessage(
             id,
               buf,MessageType.image)
-       
+       conn.sendMessage(id, '*SUKSES*', MessageType.text)
             }
         )
         .catch(
@@ -707,6 +648,7 @@ const get = require('got')
 
 if (text.includes("$animepict"))
    {
+	   conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
     var items = ["anime girl", "anime cantik", "anime", "anime aesthetic", "anime hd", "gambar anime hd"];
     var nime = items[Math.floor(Math.random() * items.length)];
     var url = "https://api.fdci.se/rep.php?gambar=" + nime;
@@ -718,12 +660,11 @@ if (text.includes("$animepict"))
         imageToBase64(nimek) 
         .then(
             (response) => {
-	conn.sendMessage(id, 'Sedang diproses...', MessageType.text)
 	var buf = Buffer.from(response, 'base64'); 
               conn.sendMessage(
             id,
               buf,MessageType.image)
-       
+       conn.sendMessage(id, '*SUKSES*', MessageType.text)
             }
         )
         .catch(
@@ -733,36 +674,11 @@ if (text.includes("$animepict"))
         )
     
     });
-    }
- else if (text.includes("$ttsid")) {
-  var teks = text.split("$ttsid")[1];
-  var path = require('path');
-  var text1 = teks.slice(6);
-  text1 = suara;
-  var suara = text.replace(/$ttsid/g, text1);
-  var filepath = 'mp3/bacot.wav';
-  
-  
-/*
- * save audio file
- */
-
-gtts.save(filepath, suara, function() {
-  console.log(`${filepath} MP3 SAVED!`)
-});
-await new Promise(resolve => setTimeout(resolve, 500));
-
-	if(suara.length > 200){ // check longness of text, because otherways google translate will give me a empty file
-  conn.sendMessage("Text kepanjangan bro!")
-}else{
-
-const buffer = fs.readFileSync (filepath)
-	conn.sendMessage(id , buffer , MessageType.audio);
-
 };
 }
 if (text.includes("$pokemon"))
 {
+	conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
 var items = ["anime pokemon"];
 var nime = items[Math.floor(Math.random() * items.length)];
 var url = "https://api.fdci.se/rep.php?gambar=" + nime;
@@ -778,6 +694,7 @@ var buf = Buffer.from(response, 'base64');
 conn.sendMessage(
 id,
 buf,MessageType.image)
+	conn.sendMessage(id, '*SUKSES*', MessageType.text)
 }
 )
 .catch(
@@ -789,6 +706,7 @@ console.log(error);
 }
 if (text.includes("$loli"))
 {
+	conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
 var items = ["anime loli"];
 var nime = items[Math.floor(Math.random() * items.length)];
 var url = "https://api.fdci.se/rep.php?gambar=" + nime;
@@ -804,6 +722,7 @@ var buf = Buffer.from(response, 'base64');
  conn.sendMessage(
 id,
 buf,MessageType.image)
+	 conn.sendMessage(id, '*SUKSES*', MessageType.text)
 })
 .catch(
 (error) => {
@@ -812,17 +731,21 @@ console.log(error);
 });
 }
 if (text.includes("$lirik")){
+	conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
 	const teks = text.split("$lirik")[1]
 	axios.get(`http://scrap.terhambar.com/lirik?word=${teks}`).then ((res) => {
 	 	let hasil = `\n*[${teks}]*\n\n\n____________________________________\n ${res.data.result.lirik}\n\n____________________________________`
 	conn.sendMessage(id, hasil, MessageType.text)
+		conn.sendMessage(id, '*SUKSES*', MessageType.text)
 	})
 }
 if (text.includes("$alay")){
+	conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
 	const alay = text.split("$alay")[1]
 	axios.get(`https://api.terhambar.com/bpk?kata=${alay}`).then ((res) =>
 		{ let hasil = `${res.data.text}`
 		conn.sendMessage(id, hasil, MessageType.text)
+		 conn.sendMessage(id, '*SUKSES*', MessageType.text)
 	})
 }
 
