@@ -673,7 +673,6 @@ if (text.includes("$animepict"))
         )
     
     });
-};
 }
 if (text.includes("$pokemon"))
 {
