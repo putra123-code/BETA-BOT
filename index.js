@@ -199,8 +199,7 @@ if (text.includes('$nulis')){
         .then(
           (ress) => {
             var buf = Buffer.from(ress, 'base64')
-	    conn.sendMessage(id, '*SUKSES*', MessageType.text)
-            conn.sendMessage(id, buf, MessageType.image)
+            conn.sendMessage(id, '*SUKSES*', buf, MessageType.image)
         })
     })
 }
