@@ -17,7 +17,7 @@ const info = require("./lib/info.js");
 const BotName = 'Putra_Prawangsa'; 
 const instagram = 'KOSONG'; 
 const telegram = 'Tidak Punya'; 
-const kapanbotaktif = '24 JAM OFFLINE ~SIBUK  !!!~'; 
+const kapanbotaktif = '24 JAM OFFLINE SIBUK  !!!'; 
 const youtube = 'Tidak Punya';
 //const grupch1 = 'belum ada grup'; 
 //const grupch2 = 'belum ada grup' ; 
@@ -218,7 +218,6 @@ if (text.includes("$infoig")){
 	conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
   const teks = text.replace(/.infoig /, "")
   axios.get(`https://st4rz.herokuapp.com/api/stalk?username=${teks}`).then ((res) =>{
-  conn.sendMessage(id, 'Sedang diproses...', MessageType.text)
   let hasil = `BIODATA INSTAGRAM ATAS NAMA _${teks}_ \n\n *Username* : _${res.data.Username}_ \n *Nama* : _${res.data.Name}_ \n *Jumlah Followers* : _${res.data.Jumlah_Followers}_ \n *Jumlah_Following* : _${res.data.Jumlah_Following}_ \n *Jumlah_Post* : _${res.data.Jumlah_Post}_ `;
   conn.sendMessage(id, hasil, MessageType.text);
 	  conn.sendMessage(id, '*SUKSES*', MessageType.text)
@@ -228,7 +227,6 @@ if (text.includes("$infogempa")){
 	conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
   const teks = text.replace(/.infogempa /, "")
   axios.get(`https://st4rz.herokuapp.com/api/infogempa`).then ((res) =>{
-  conn.sendMessage(id, 'Sedang diproses...', MessageType.text)
   let hasil = ` *INFO GEMPA* \n\ *Lokasi* : _${res.data.lokasi}_ \n *Kedalaman* : _${res.data.kedalaman}_ \n *Koordinat* : _${res.data.koordinat}_ \n *Magnitude* : _${res.data.magnitude}_ \n *Waktu* : _${res.data.waktu}_ `;
   conn.sendMessage(id, hasil, MessageType.text);
 	  conn.sendMessage(id, '*SUKSES*', MessageType.text)
@@ -238,7 +236,6 @@ if (text.includes("$chord")){
 	conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
 const teks = text.replace(/.chord /, "")
 axios.get(`https://st4rz.herokuapp.com/api/chord?q=${teks}`).then((res) => {
-	conn.sendMessage(id, 'Sedang diproses...', MessageType.text)
     let hasil = `Cord Lagu ${teks}  \n\nCord: _${res.data.result}_ `;
     conn.sendMessage(id, hasil ,MessageType.text);
 	conn.sendMessage(id, '*SUKSES*', MessageType.text)
@@ -686,7 +683,6 @@ var nimek =  n[Math.floor(Math.random() * n.length)];
 imageToBase64(nimek) 
 .then(
 (response) => {
-conn.sendMessage(id, 'Sedang diproses...', MessageType.text)
 var buf = Buffer.from(response, 'base64'); 
 conn.sendMessage(
 id,
@@ -714,7 +710,6 @@ var nimek =  n[Math.floor(Math.random() * n.length)];
 imageToBase64(nimek) 
 .then(
  (response) => {
-conn.sendMessage(id, 'Sedang diproses...', MessageType.text)
 var buf = Buffer.from(response, 'base64'); 
  conn.sendMessage(
 id,
@@ -737,12 +732,10 @@ if (text.includes("$lirik")){
 	})
 }
 if (text.includes("$alay")){
-	conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
 	const alay = text.split("$alay")[1]
 	axios.get(`https://api.terhambar.com/bpk?kata=${alay}`).then ((res) =>
 		{ let hasil = `${res.data.text}`
 		conn.sendMessage(id, hasil, MessageType.text)
-		 conn.sendMessage(id, '*SUKSES*', MessageType.text)
 	})
 }
 
@@ -755,7 +748,7 @@ if (text.includes("$alay")){
 
 
 
-//AKHIRNYAAAAAAAA
+//SELESAI
 
 
 })
