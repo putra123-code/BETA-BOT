@@ -581,9 +581,8 @@ conn.sendMessage(id, '*SUKSES*', MessageType.text)
     
 	*Putra_Prawangsa*
          `, MessageType.text
-		    conn.sendMessage(id, '*SUKSES*', MessageType.text)
             );
-
+conn.sendMessage(id, '*SUKSES*', MessageType.text)
          });
    }
    if (text.includes("$pict cewek"))
