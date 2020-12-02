@@ -61,8 +61,8 @@ conn.on('credentials-updated', () =>
    fs.writeFileSync('./session.json', JSON.stringify(authInfo, null, '\t')) // save this info to a file
 })
 fs.existsSync('./session.json') && conn.loadAuthInfo('./session.json')
- uncomment the following line to proxy the connection; some random proxy I got off of: https://proxyscrape.com/free-proxy-list
-conn.connectOptions.agent = ProxyAgent ('http://1.0.180.120:8080')
+ //uncomment the following line to proxy the connection; some random proxy I got off of: https://proxyscrape.com/free-proxy-list
+//conn.connectOptions.agent = ProxyAgent ('http://1.0.180.120:8080')
 conn.connect();
 
 conn.on('user-presence-update', json => console.log(json.id + ' presence is => ' + json.type)) || console.log('Bot by Putra_Prawangsa')
@@ -191,14 +191,15 @@ conn.sendMessage(id, teks, MessageType.text)
 	
 }
 if (text.includes('$nulis')){
+	conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
   var teks = text.replace(/$nulis /, '')
     axios.get('https://bangandre.herokuapp.com/nulis?teks='+teks)
     .then((res) => {
       imageToBase64(res.data.result)
         .then(
           (ress) => {
-            conn.sendMessage(id, 'Sedang diproses...', MessageType.text)
             var buf = Buffer.from(ress, 'base64')
+	    conn.sendMessage(id, '*SUKSES*', MessageType.text)
             conn.sendMessage(id, buf, MessageType.image)
         })
     })
