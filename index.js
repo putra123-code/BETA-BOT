@@ -507,7 +507,6 @@ conn.sendMessage(id, 'ulangi dengan  $pict cewek/cowok\n\nMisal: $pict cowok' ,M
 }
    if (messageType == 'imageMessage')
    {
-	   conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
       let caption = imageMessage.caption.toLocaleLowerCase()
       const buffer = await conn.downloadMediaMessage(m) // to decrypt & use as a buffer
       if (caption == '$sticker')
