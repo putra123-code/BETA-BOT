@@ -190,9 +190,9 @@ if (text.includes("$say")){
 conn.sendMessage(id, teks, MessageType.text)
 	
 }
-if (text.includes('$nulis')){
+if (text.includes("$nulis")){
 	conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
-  var teks = text.replace(/.nulis /, '')
+  var teks = text.replace(/.nulis /, "")
     axios.get('https://bangandre.herokuapp.com/nulis?teks='+teks)
     .then((res) => {
       imageToBase64(res.data.result)
@@ -209,7 +209,7 @@ if (text.includes("$ytmp3")){
 	conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
 const teks = text.replace(/.ytmp3 /, "")
 axios.get(`http://scrap.terhambar.com/yt?link=${teks}`).then((res) => {
-    let hasil = `${res.data.title}\n\n${res.data.filesize}\n\n${res.data.result}`;
+    let hasil = `\nJudul: ${res.data.title}\n\nDuration: ${res.data.inText}\n\nAudio: ${res.data.linkAudioOnly}`;
     conn.sendMessage(id, hasil ,MessageType.text);
 	conn.sendMessage(id, '*SUKSES*', MessageType.text)
 })
@@ -246,18 +246,121 @@ if (text.includes("$yt")){
 	conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
 const teks = text.replace(/.yt /, "")
 axios.get(`http://scrap.terhambar.com/yt?link=${teks}`).then((res) => {
-    let hasil = `${res.data.title}\n\n${res.data.filesize}\n\n${res.data.result}`;
+    let hasil = `\nJudul: ${res.data.title}\n\nDuration: ${res.data.inText}\n\nLink video: ${res.data.linkVideo}`;
     conn.sendMessage(id, hasil ,MessageType.text);
-	conn.sendMessage(id, '*SUKSES*', MessageType.text)
 })
 }
 
 if (text.includes("$tts")){
-	conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
-const teks = text.replace(/.tts /, "")
-const gtts = (`https://rest.farzain.com/api/tts.php?id=${teks}&apikey=O8mUD3YrHIy9KM1fMRjamw8eg`)
-    conn.sendMessage(id, gtts ,MessageType.text);
-	conn.sendMessage(id, '*SUKSES*', MessageType.text)
+conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
+  var teks = text.replace(/.tts /, "")
+    axios.get('http://scrap.terhambar.com/tts?kata=${teks}')
+    .then((res) => {
+      audioToBase64(res.data.result)
+        .then(
+          (ress) => {
+            var buf = Buffer.from(ress, 'base64')
+            conn.sendMessage(id, buf, MessageType.audio)
+conn.sendMessage(id, '*SUKSES*', MessageType.text)
+        })
+    })
+}
+if (text.includes("$puisi1")){
+conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
+const teks = text.replace(/.puisi1 /, "")
+axios.get(`https://arugaz.herokuapp.com/api/puisi1`).then((res) => {
+    let hasil = `${res.data.result} `;
+    conn.sendMessage(id, hasil ,MessageType.text)
+conn.sendMessage(id, '*SUKSES*', MessageType.text);
+})
+}
+if (text.includes("$puisi2")){
+conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
+const teks = text.replace(/.puisi2 /, "")
+axios.get(`https://arugaz.herokuapp.com/api/puisi3`).then((res) => {
+    let hasil = `${res.data.result} `;
+    conn.sendMessage(id, hasil ,MessageType.text)
+conn.sendMessage(id, '*SUKSES*', MessageType.text);
+})
+}
+if (text.includes("$bitly")){
+conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
+const teks = text.replace(/.bitly /, "")
+axios.get(`https://api.haipbis.xyz/bitly?url=${teks}`).then((res) => {
+    let hasil = `${res.data.result}`;
+    conn.sendMessage(id, hasil ,MessageType.text)
+conn.sendMessage(id, '*SUKSES*', MessageType.text);
+})
+}
+if (text.includes("$filmanime")){
+conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
+const teks = text.replace(/.filmanime /, "")
+axios.get(`https://arugaz.herokuapp.com/api/sdmovie?film=${teks}`).then((res) => {
+    let hasil = ` *Film Anime ${teks} :* \n\n *Judul* _${res.data.result.title}_ \n\n *Rating* _${res.data.result.rating}_ \n\n *Info* _${res.data.result.sinopsis}_ \n\n *Link Video* _${res.data.result.video}_ `;
+    conn.sendMessage(id, hasil ,MessageType.text)
+conn.sendMessage(id, '*SUKSES*', MessageType.text);
+})
+}
+if (text.includes("$indohot")){
+conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
+const teks = text.replace(/.indohot /, "")
+axios.get(`https://arugaz.herokuapp.com/api/indohot`).then((res) => {
+    let hasil = ` *Tobat Bosq* \n\n *Judul* _${res.data.result.judul}_ \n\n *Status* _${res.data.result.genre}_ \n\n *Durasi* _${res.data.result.durasi}_ \n\n *Link Bosq* _${res.data.result.url}_ `;
+    conn.sendMessage(id, hasil ,MessageType.text)
+conn.sendMessage(id, '*SUKSES*', MessageType.text);
+})
+}
+if (text.includes("$gay")){
+conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
+const teks = text.replace(/.gay /, "")
+axios.get(`https://arugaz.herokuapp.com/api/howgay`).then((res) => {
+    let hasil = ` ${res.data.desc} \n\n${res.data.persen}`;
+    conn.sendMessage(id, hasil ,MessageType.text)
+conn.sendMessage(id, '*SUKSES*', MessageType.text);
+})
+}
+if (text.includes("$cerpen")){
+conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
+const teks = text.replace(/.cerpen /, "")
+axios.get(`https://arugaz.herokuapp.com/api/cerpen`).then((res) => {
+    let hasil = `${res.data.result} `;
+    conn.sendMessage(id, hasil ,MessageType.text)
+conn.sendMessage(id, '*SUKSES*', MessageType.text);
+})
+}
+if (text.includes("$infoanime")){
+conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
+const teks = text.replace(/.infoanime /, "")
+axios.get(`https://arugaz.herokuapp.com/api/dewabatch?q=${teks}`).then((res) => {
+    let hasil = `${res.data.result} `;
+    conn.sendMessage(id, hasil ,MessageType.text)
+conn.sendMessage(id, '*SUKSES*', MessageType.text);
+})
+ }
+if (text.includes("$animehentai")){
+const teks = text.replace(/!animehentai /, "")
+axios.get(`https://mhankbarbar.herokuapp.com/api/random/hentai?apiKey=lGjYt4zA5SQlTDx9z9Ca`).then((res) =>{
+let hasil = `*➸Hasil* Pencet Link di bawah ini Untuk melihat randomhentai...\n${res.data.result}`
+conn.sendMessage(id, hasil, MessageType.text);
+})   
+}
+if (text.includes("$bucin")){
+conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
+const teks = text.replace(/.bucin /, "")
+axios.get(`https://arugaz.herokuapp.com/api/howbucins`).then((res) => {
+    let hasil = `${res.data.desc} `;
+    conn.sendMessage(id, hasil ,MessageType.text);
+conn.sendMessage(id, '*SUKSES*', MessageType.text)
+})
+}
+if (text.includes("$cersex")){
+conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
+const teks = text.replace(/.cersex /, "")
+axios.get(`https://arugaz.herokuapp.com/api/cersex2`).then((res) => {
+    let hasil = `${res.data.result} `;
+    conn.sendMessage(id, hasil ,MessageType.text);
+conn.sendMessage(id, '*SUKSES*', MessageType.text)
+})
 }
 
 if (text.includes("$fb")){
@@ -292,8 +395,8 @@ axios.get(`https://mhankbarbar.herokuapp.com/api/twit?url=${teks}&apiKey=zFuV88p
 if (text.includes("$tiktok")) {
 	conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
 const tictoc = text.replace(/.tiktok /, "")
-axios.get(`https://st4rz.herokuapp.com/api/tiktok?url=${tictoc}`).then((res) => {
-     let titoe = `${res.data.deskripsi} \n\n${res.data.durasi}\n\n${res.data.nama}\n\n${res.data.urlvideo}`;
+axios.get(`http://scrap.terhambar.com/tiktokfull?link=${tictoc}`).then((res) => {
+     let titoe = `\n\nJudul: ${res.data.deskripsi} \n\nDurasi: ${res.data.durasi}\n\nNama: ${res.data.nama}\n\nUrl: ${res.data.urlvideo}`;
 conn.sendMessage(id, titoe, MessageType.text);
 	conn.sendMessage(id, '*SUKSES*', MessageType.text)
 })
@@ -301,8 +404,8 @@ conn.sendMessage(id, titoe, MessageType.text);
 if (text.includes("$sholat")){
 	conn.sendMessage(id, '*Sedang diproses...*', MessageType.text)
   const teks = text.replace(/.sholat /, "")
-  axios.get(`https://mhankbarbar.herokuapp.com/api/jadwalshalat?daerah=${teks}&apiKey=zFuV88pxcIiCWuYlwg57`).then ((res) =>{
-  let hasil = `Jadwal sholat di *[${teks} ]* hari ini adalah\n\n👉Imsyak : ${res.data.Imsyak}\n👉Subuh : ${res.data.Subuh} WIB\n👉Dzuhur : ${res.data.Dzuhur}WIB\n👉Ashar : ${res.data.Ashar} WIB\n👉Maghrib : ${res.data.Maghrib}\n👉Isya : ${res.data.Isya} WIB\n👉Tengah malam : ${res.data.Dhuha} WIB`;
+ axios.get(`https://api.haipbis.xyz/jadwalsholat?daerah=${teks}`).then ((res) =>{
+  let hasil = `Jadwal sholat di *[${teks} ]* hari ini adalah\n\nImsyak : ${res.data.Imsyak}\nSubuh : ${res.data.Subuh} WIB\nDzuhur : ${res.data.Dzuhur}WIB\nAshar : ${res.data.Ashar} WIB\nMaghrib : ${res.data.Maghrib}\nIsya : ${res.data.Isya} WIB\nTengah malam : ${res.data.Dhuha} WIB`;
   conn.sendMessage(id, hasil, MessageType.text);
 	  conn.sendMessage(id, '*SUKSES*', MessageType.text)
 })
